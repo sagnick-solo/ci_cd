@@ -1,13 +1,3 @@
 node_modules
 
-# coverage files
-coverage
-.nyc_output
-
-# not working
-.husky
-.vscode
-
-#instrumentation file
-.babelrc
 
