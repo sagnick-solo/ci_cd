@@ -3,7 +3,7 @@ import faker from 'faker'
 
 describe('pesitive-negative', () => {
 
-    it('switchboard-sales', () => {
+    it('switchboard-sales-positive', () => {
         cy.visit("/")
         cy.get('#user_email').type('ashmita.sur+retaileradmin@kreeti.com')
         cy.get('#user_password').type('kreeti123')
@@ -11,7 +11,7 @@ describe('pesitive-negative', () => {
         cy.location('pathname').should('contain', '/retailer/profiles')
     })
 
-    it('switchboard-sales', () => {
+    it('switchboard-sales-negative', () => {
         cy.visit("/")
         cy.get('#user_email').type(faker.internet.email())
         cy.get('#user_password').type(faker.internet.password())
