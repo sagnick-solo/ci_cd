@@ -42,9 +42,9 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v2.9.7
+        continue-on-error: true
         with:
           browser: chrome
-          continue-on-error: true
 
       - name: Create directory
         run: |
