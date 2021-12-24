@@ -1,8 +1,15 @@
-name: End-to-end tests
-on: [push]
+name: End-to-end tests using Cypress Docker Image
+on:
+  # Trigger the workflow on push request
+  # but only for the main branch
+  push:
+    branches:
+      - main
+
 jobs:
   cypress-run:
     runs-on: windows-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
     
     name: E2E on Chrome
     steps:
@@ -10,14 +17,19 @@ jobs:
         uses: actions/checkout@v2
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
+      - name: Clean and create
+          run: npm run clean && npm run create
+      
       - name: Cypress run
         uses: cypress-io/github-action@v2.9.7
         with:
           browser: chrome
-          headless: true
-      - uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
+            
+      - name: report generating
+          run: npm run combine-reports && npm run generate-report
 
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: cypress/reports/mochareports
