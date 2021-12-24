@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test:chrome": "cypress run --browser chrome",
     "clean": "powershell -Command Remove-Item 'cypress/reports' -Recurse",
     "create": "powershell -Command New-Item -Path 'cypress/reports/mochareports' -ItemType Directory",
     "scripts": "cypress run",
