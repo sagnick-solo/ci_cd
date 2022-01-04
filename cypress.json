@@ -4,6 +4,7 @@
     "screenshotOnRunFailure": true,
     "screenshotsFolder": "cypress/screenshots",
     "reporter": "cypress-multi-reporters",
+    "chromeWebSecurity": false,
     "reporterOptions": {
         "reporterEnabled": "mochawesome",
         "mochawesomeReporterOptions": {
